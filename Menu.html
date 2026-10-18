@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Tailwind (kept SAME) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Salsa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Salsa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ZA:wght@100..400&display=swap" rel="stylesheet">
+
+</head>
+
+<body style="background: url('backbg.png') no-repeat center center fixed; background-size: cover;">
+
+<nav class="w-full shadow-lg bg-[url('bg.png')] bg-cover bg-center">
+  <div class="max-w-7xl mx-auto h-16 flex items-center px-4 relative">
+
+    <!-- Left: Logo -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <img
+        src="logo.png"
+        alt="Tandoori Bites"
+        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover"
+      >
+      <span class="hidden lg:block text-[#001219] bg-red-300 font-[Pacifico] tracking-wide text-3xl">
+        Tandoori Bites
+      </span>
+    </div>
+
+    <!-- Center Search Bar -->
+    <div class="flex-1 flex justify-center mx-4">
+      <input
+        type="search"
+        placeholder="Search food...."
+        class="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[600px]
+               px-4 py-2 rounded-full
+               bg-white text-gray-800
+               border-3 border-black
+               focus:outline-none focus:ring-2 focus:ring-black"
+      >
+    </div>
+
+    <!-- Right Menu -->
+    <ul class="hidden sm:flex ml-auto gap-6 text-[#7209b7] bg-white font-[Salsa] font-semibold text-base lg:text-lg">
+      <li class="hover:text-yellow-500 transition"><a href="index.html">Home<i class="fa-solid fa-house" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="Menu.html">Menu<i class="fa-solid fa-clipboard-list" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="cart.html">Cart<i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="OurLocation.html">Our Location<i class="fa-solid fa-map-location-dot" style="color: #000000;"></i></a></li>
+    </ul>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <ul class="sm:hidden flex justify-around bg-[#faedcd] text-black font-[Salsa] font-semibold text-sm py-3">
+    <li class="hover:bg-blue-300 transition"><a href="index.html">Home<i class="fa-solid fa-house" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="Menu.html">Menu<i class="fa-solid fa-clipboard-list" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="cart.html">Cart<i class="fa-solid fa-cart-shopping" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="OurLocation.html">Location<i class="fa-solid fa-map-location-dot" style="color: #1d49e7;"></i></a></li>
+  </ul>
+</nav>
+
+
+<header class="bg-red-600 text-white py-6 text-center">
+  <h1 class="text-4xl font-bold">Our Menu</h1>
+  <p class="text-sm mt-1">Fresh • Hot • Delicious</p>
+</header>
+
+<!-- ================= FAST FOOD ================= -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold mb-6 text-red-600">🍔 Fast Food</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+    <!-- Chicken Burger -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://ifoodreal.com/wp-content/uploads/2023/06/fg-grilled-chicken-burger.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chicken Burger</h3>
+      <p>Rs 450</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chicken Burger',450)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Zinger Burger -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://ideogram.ai/assets/image/balanced/response/Ir-jloH0TiuGK10sJH37nw@2k" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Zinger Burger</h3>
+      <p>Rs 520</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Zinger Burger',520)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- BBQ Pizza -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVI8kM3526ttNCujzEnZoMz-Bzq4pWDG9Y5Q&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">BBQ Pizza</h3>
+      <p>Rs 1200</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'BBQ Pizza',1200)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Chicken Wings -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://dishnthekitchen.com/wp-content/uploads/2024/09/squareHotHoneyWings-735x735.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chicken Wings</h3>
+      <p>Rs 600</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chicken Wings',600)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Extra 6 Fast Food items -->
+    <!-- French Fries -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://www.savoryexperiments.com/wp-content/uploads/2024/02/Cajun-Fries-19.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">French Fries</h3>
+      <p>Rs 250</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'French Fries',250)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Club Sandwich -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://tornadoughalli.com/wp-content/uploads/2022/05/CLUB-SANDWICH-RECIPE-3-2.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Club Sandwich</h3>
+      <p>Rs 550</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Club Sandwich',550)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Cheese Burger -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://stordfkenticomedia.blob.core.windows.net/df-us/rms/media/recipemediafiles/recipe%20images%20and%20files/retail/desktop%20(600x600)/2024.march/2024_retail_double-stack-cheeseburger_600x600.jpg?ext=.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Cheese Burger</h3>
+      <p>Rs 500</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Cheese Burger',500)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Veggie Burger -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://services.eatx.pk//ProductImages/2eb29710-7a76-4624-8381-f743bc625ece.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Veggie Burger</h3>
+      <p>Rs 400</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Veggie Burger',400)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Grilled Sandwich -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2014/01/grilled-sandwich-4.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Grilled Sandwich</h3>
+      <p>Rs 350</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Grilled Sandwich',350)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Hot Dog -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://i.iheart.com/v3/re/new_assets/6245e71e5cab3a575d472d7b?ops=contain(1480,0)" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Hot Dog</h3>
+      <p>Rs 300</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Hot Dog',300)" class="mt-2 bg-red-600 text-white px-4 py-1 rounded-full hover:bg-red-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= DESI FOOD ================= -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold mb-6 text-green-700">🍛 Desi Food</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+    <!-- Chicken Biryani -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://butteroverbae.com/wp-content/uploads/2020/10/karachi-chicken-biryani-11.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chicken Biryani</h3>
+      <p>Rs 350/plate</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chicken Biryani',350)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Chicken Karahi -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://www.chilipeppermadness.com/wp-content/uploads/2025/02/Chicken-Karahi-Recipe-SQ.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chicken Karahi</h3>
+      <p>Rs 1200</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chicken Karahi',1200)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Daal Chawal -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://snappy.pk/wp-content/uploads/2025/07/Dal-chawal-.webp" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Daal Chawal</h3>
+      <p>Rs 300</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Daal Chawal',300)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Extra 6 Desi Food items here: Nihari, Haleem, Seekh Kabab, Chicken Korma, Chapli Kabab, Pulao -->
+
+        <!-- Nihari -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://images.immediate.co.uk/production/volatile/sites/30/2024/12/Nihari-2c750c0.jpg?quality=90&resize=708,643" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Nihari</h3>
+      <p>Rs 800</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Nihari',800)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Haleem -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://static01.nyt.com/images/2025/03/24/multimedia/ZS-Haleem-plhg/ZS-Haleem-plhg-mediumSquareAt3X.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Haleem</h3>
+      <p>Rs 700</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Haleem',700)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Seekh Kabab -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://foodiesterminal.com/wp-content/uploads/2019/04/Mutton-seekh-kabab-recipe-14.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Seekh Kabab</h3>
+      <p>Rs 600</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Seekh Kabab',600)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Chicken Korma -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/08/chicken-korma-recipe.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chicken Korma</h3>
+      <p>Rs 900</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chicken Korma',900)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Chapli Kabab -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://i.ytimg.com/vi/r7uHBnio2vE/maxresdefault.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chapli Kabab</h3>
+      <p>Rs 500/ 4pieces</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chapli Kabab',500)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Pulao -->
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://ikneadtoeat.com/wp-content/uploads/2022/06/chicken-pulao-recipe-2.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Pulao</h3>
+      <p>Rs 450/kg</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Pulao',450)" class="mt-2 bg-green-600 text-white px-4 py-1 rounded-full hover:bg-green-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SWEETS ================= -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold mb-6 text-pink-600">🍨 Sweets</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://falasteenifoodie.com/wp-content/uploads/2024/11/DSC02391.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Gulab Jamun</h3>
+      <p>Rs 120</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Gulab Jamun',120)" class="mt-2 bg-pink-600 text-white px-4 py-1 rounded-full hover:bg-pink-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://palatesdesire.com/wp-content/uploads/2022/09/Rasmalai-recipe@palates-desire.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Ras Malai</h3>
+      <p>Rs 150</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Ras Malai',150)" class="mt-2 bg-pink-600 text-white px-4 py-1 rounded-full hover:bg-pink-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://static.toiimg.com/photo/53099699.cms" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Jalebi</h3>
+      <p>Rs 100</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Jalebi',100)" class="mt-2 bg-pink-600 text-white px-4 py-1 rounded-full hover:bg-pink-700 cursor-pointer">Add to Cart</button>
+    </div>
+
+    <!-- Add more sweets similarly -->
+
+  </div>
+</section>
+
+<!-- ================= COLD DRINKS ================= -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold mb-6 text-blue-600">🥤 Drinks</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_kbwHWrA6KMC2S0lIPf7INdNx8lB4Az-kHA&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Cola Next</h3>
+      <p>Rs 120</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Coca Cola',120)" class="mt-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700 cursor-pointer">Add to Cart</button>
+    </div>
+    <!-- Add more drinks -->
+     <div class="bg-white p-4 rounded-xl shadow text-center">
+  <img src="https://caribshopper.com/cdn/shop/products/tru-juice-100-orange-juice-1l-caribshopper-230272.jpg?v=1762526050" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+  <h3 class="font-bold mt-2">Orange Juice</h3>
+  <p>Rs 180</p>
+  <div class="flex items-center justify-center gap-3 mt-2">
+    <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+    <span class="qty font-semibold text-lg">1</span>
+    <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+  </div>
+  <button onclick="addToCartWithQty(this,'Orange Juice',180)" class="mt-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700">Add to Cart</button>
+</div>
+<div class="bg-white p-4 rounded-xl shadow text-center">
+  <img src="https://thumbs.dreamstime.com/z/realistic-vector-branding-design-packaging-mango-juice-template-summary-brand-box-illustration-180887074.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+  <h3 class="font-bold mt-2">Mango Juice</h3>
+  <p>Rs 200</p>
+  <div class="flex items-center justify-center gap-3 mt-2">
+    <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+    <span class="qty font-semibold text-lg">1</span>
+    <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+  </div>
+  <button onclick="addToCartWithQty(this,'Mango Juice',200)" class="mt-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700">Add to Cart</button>
+</div>
+<div class="bg-white p-4 rounded-xl shadow text-center">
+  <img src="https://rita.com.vn/images/uploads/Water-melon_300ml-glass.webp" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+  <h3 class="font-bold mt-2">Watermelon Juice</h3>
+  <p>Rs 160</p>
+  <div class="flex items-center justify-center gap-3 mt-2">
+    <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+    <span class="qty font-semibold text-lg">1</span>
+    <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+  </div>
+  <button onclick="addToCartWithQty(this,'Watermelon Juice',160)" class="mt-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700">Add to Cart</button>
+</div>
+<div class="bg-white p-4 rounded-xl shadow text-center">
+  <img src="https://images.albertsons-media.com/is/image/ABS/960165145-C1N1?$ng-ecom-pdp-mobile$&defaultImage=Not_Available" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+  <h3 class="font-bold mt-2">Apple Juice</h3>
+  <p>Rs 170</p>
+  <div class="flex items-center justify-center gap-3 mt-2">
+    <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+    <span class="qty font-semibold text-lg">1</span>
+    <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+  </div>
+  <button onclick="addToCartWithQty(this,'Apple Juice',170)" class="mt-2 bg-blue-600 text-white px-4 py-1 rounded-full hover:bg-blue-700">Add to Cart</button>
+</div>
+
+  </div>
+</section>
+
+<!-- ================= ROTI / CHAPATI / PARATHA ================= -->
+<section class="max-w-7xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold mb-6 text-yellow-600">🥘 Roti / Chapati / Paratha</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQtnw2q_aqvctkinUskMk_UbJQJ6sT2frFZA&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Roti</h3>
+      <p>Rs 30</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Roti',30)" class="mt-2 bg-yellow-600 text-white px-4 py-1 rounded-full hover:bg-yellow-700 cursor-pointer">Add to Cart</button>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://tastythriftytimely.com/wp-content/uploads/2025/06/Chapati-FEATURED.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Chapati</h3>
+      <p>Rs 25</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Chapati',25)" class="mt-2 bg-yellow-600 text-white px-4 py-1 rounded-full hover:bg-yellow-700 cursor-pointer">Add to Cart</button>
+    </div>
+    <div class="bg-white p-4 rounded-xl shadow text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUyIfow0VJn76w4T5V7BwJALZm-52npGlWzA&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg">
+      <h3 class="font-bold mt-2">Paratha</h3>
+      <p>Rs 40</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+        <button onclick="changeQtyUI(this,-1)" class="bg-gray-300 px-3 rounded text-lg">−</button>
+        <span class="qty font-semibold text-lg">1</span>
+        <button onclick="changeQtyUI(this,1)" class="bg-gray-300 px-3 rounded text-lg">+</button>
+      </div>
+      <button onclick="addToCartWithQty(this,'Paratha',40)" class="mt-2 bg-yellow-600 text-white px-4 py-1 rounded-full hover:bg-yellow-700 cursor-pointer">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CART JS ================= -->
+<script>
+function changeQtyUI(btn, change) {
+  const qtySpan = btn.parentElement.querySelector(".qty");
+  let qty = parseInt(qtySpan.innerText);
+  qty = Math.max(1, qty + change);
+  qtySpan.innerText = qty;
+}
+
+function addToCartWithQty(btn, name, price) {
+  let qty = 1;
+  const card = btn.closest(".bg-white");
+  const qtySpan = card.querySelector(".qty");
+  if (qtySpan) {
+    qty = parseInt(qtySpan.innerText) || 1;
+    qtySpan.innerText = 1; // reset after adding
+  }
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name, price, qty });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Toast popup
+  const toast = document.createElement("div");
+  toast.innerHTML = `<strong>${qty} × ${name}</strong> added to cart`;
+  toast.className = `
+    fixed bottom-20 right-6 bg-green-500 text-white
+    px-5 py-3 rounded-xl shadow-lg
+    opacity-0 translate-x-10 transition-all duration-300 z-50
+  `;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.remove("opacity-0", "translate-x-10");
+  });
+
+  setTimeout(() => {
+    toast.classList.add("opacity-0", "translate-x-10");
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
+</script>
+
+<!-- ================= CART BUTTON ================= -->
+<a href="cart.html" class="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50">
+  <i class="fas fa-shopping-cart text-lg sm:text-2xl"></i>
+</a>
+
+<!-- Font Awesome CDN for cart icon -->
+<script src="https://kit.fontawesome.com/6e6b3e7d0f.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
+
+  </body>
+</html>

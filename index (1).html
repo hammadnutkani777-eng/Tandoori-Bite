@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Tailwind (kept SAME) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Salsa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Salsa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ZA:wght@100..400&display=swap" rel="stylesheet">
+
+</head>
+
+<body style="background: url('backbg.png') no-repeat center center fixed; background-size: cover;">
+
+<nav class="w-full shadow-lg bg-[url('bg.png')] bg-cover bg-center">
+  <div class="max-w-7xl mx-auto h-16 flex items-center px-4 relative">
+
+    <!-- Left: Logo -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <img
+        src="logo.png"
+        alt="Tandoori Bites"
+        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover"
+      >
+      <span class="hidden lg:block text-[#001219] bg-red-300 font-[Pacifico] tracking-wide text-3xl">
+        Tandoori Bites
+      </span>
+    </div>
+
+    <!-- Center Search Bar -->
+    <div class="flex-1 flex justify-center mx-4">
+      <input
+        type="search"
+        placeholder="Search food...."
+        class="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[600px]
+               px-4 py-2 rounded-full
+               bg-white text-gray-800
+               border-3 border-black
+               focus:outline-none focus:ring-2 focus:ring-black"
+      >
+    </div>
+
+    <!-- Right Menu -->
+    <ul class="hidden sm:flex ml-auto gap-6 text-[#7209b7] bg-white font-[Salsa] font-semibold text-base lg:text-lg">
+      <li class="hover:text-yellow-500 transition"><a href="index.html">Home<i class="fa-solid fa-house" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="Menu.html">Menu<i class="fa-solid fa-clipboard-list" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="cart.html">Cart<i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="OurLocation.html">Our Location<i class="fa-solid fa-map-location-dot" style="color: #000000;"></i></a></li>
+    </ul>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <ul class="sm:hidden flex justify-around bg-[#faedcd] text-black font-[Salsa] font-semibold text-sm py-3">
+    <li class="hover:bg-blue-300 transition"><a href="index.html">Home<i class="fa-solid fa-house" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="Menu.html">Menu<i class="fa-solid fa-clipboard-list" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="cart.html">Cart<i class="fa-solid fa-cart-shopping" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="OurLocation.html">Location<i class="fa-solid fa-map-location-dot" style="color: #1d49e7;"></i></a></li>
+  </ul>
+</nav>
+
+<!-- SLIDER (ONLY bg-black ADDED HERE) -->
+<div class="relative max-w-6xl mx-auto mt-8 overflow-hidden sm:rounded-xl sm:p-2 bg-black">
+  <div id="slider" class="flex transition-transform duration-700 ease-in-out">
+  <div class="w-full flex-shrink-0">
+    <img src="bg.png" class="w-full object-cover h-[240px] sm:h-[380px]" />
+  </div>
+  <div class="w-full flex-shrink-0">
+    <img src="pbg2.jpeg" class="w-full object-cover h-[240px] sm:h-[380px]" />
+  </div>
+  <div class="w-full flex-shrink-0">
+    <img src="pbg1.png" class="w-full object-cover h-[240px] sm:h-[380px]" />
+  </div>
+</div>
+
+
+
+  <!-- Prev -->
+  <button id="prevBtn"
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white text-3xl px-3 py-1 rounded-full hover:bg-black/70 cursor-pointer">
+    ❮
+  </button>
+
+  <!-- Next -->
+  <button id="nextBtn"
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white text-3xl px-3 py-1 rounded-full hover:bg-black/70 cursor-pointer">
+    ❯
+  </button>
+
+  <!-- Dots -->
+  <div id="dots" class="absolute bottom-4 w-full flex justify-center gap-2"></div>
+
+</div>
+
+<!-- JavaScript (unchanged) -->
+<script>
+  const slider = document.getElementById("slider");
+  const dotsContainer = document.getElementById("dots");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  const slides = slider.children;
+  const totalSlides = slides.length;
+  let index = 0;
+  let autoSlide;
+
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement("span");
+    dot.className = "w-3 h-3 rounded-full bg-white/50 cursor-pointer";
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateSlider() {
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    [...dotsContainer.children].forEach((dot, i) => {
+      dot.className = i === index
+        ? "w-3 h-3 rounded-full bg-white cursor-pointer"
+        : "w-3 h-3 rounded-full bg-white/50 cursor-pointer";
+    });
+  }
+
+  function nextSlide() {
+    index = (index + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function goToSlide(i) {
+    index = i;
+    updateSlider();
+    resetAutoSlide();
+  }
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 4000);
+  }
+
+  function resetAutoSlide() {
+    clearInterval(autoSlide);
+    startAutoSlide();
+  }
+
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetAutoSlide();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetAutoSlide();
+  });
+
+  updateSlider();
+  startAutoSlide();
+</script>
+
+<h1 class="sm:text-7xl text-white font-semibold font-[Playwrite] text-center py-12 lg:text-white text-center py-12 text-3xl font-semibold font-[Playwrite] ">Explore The Best<br>Food !!!</h1>
+
+<section class="max-w-7xl mx-auto px-4 py-8 ">
+  <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
+
+    <!-- CARD 1 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://ifoodreal.com/wp-content/uploads/2023/06/fg-grilled-chicken-burger.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg " alt="Chicken Burger">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">Chicken Burger</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Juicy grilled chicken with spicy sauce</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Chicken Burger', 450)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm cursor-pointer">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://ideogram.ai/assets/image/balanced/response/Ir-jloH0TiuGK10sJH37nw@2k" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Zinger Burger">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">Zinger Burger</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Crispy zinger with special mayo</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Zinger Burger', 520)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm cursor-pointer">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVI8kM3526ttNCujzEnZoMz-Bzq4pWDG9Y5Q&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="BBQ Pizza">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">BBQ Pizza</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">BBQ chicken with melted cheese</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'BBQ Pizza', 1200)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm cursor-pointer">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://salasdaily.com/cdn/shop/files/tandoorichickenrolll.jpg?v=1695035429" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Tandoori Roll">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">Tandoori Roll</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Tandoori chicken wrapped in naan</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Tandoori Roll', 350)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 5 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSuOc9gqFksrS2Q33Gqi2t_F5Niht1SUvHfg&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="French Fries">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">French Fries</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Crispy salted fries</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'French Fries', 250)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://dishnthekitchen.com/wp-content/uploads/2024/09/squareHotHoneyWings-735x735.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Chicken Wings">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">Chicken Wings</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Spicy fried wings</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Chicken Wings', 600)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 7 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToEJhJiLD6cZaF9Jl4lNXkk4oKllArPoRLEg&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Cold Drink">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">Cold Drink</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Chilled soft drink</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Cold Drink', 120)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 8 -->
+    <div class="bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6vnM2cIFeqh6ji6yBGgXKLqcaBeO0KxY1SQ&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Ice Cream">
+      <h3 class="text-lg sm:text-xl font-bold font-[Chela] mt-2 sm:mt-3">Ice Cream</h3>
+      <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">Vanilla scoop</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Ice Cream', 180)"
+        class="mt-2 sm:mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-4 sm:px-5 py-1 sm:py-2 rounded-full transition text-xs sm:text-sm">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- CARD 9-12 (Desktop Only) -->
+    <div class="hidden lg:block bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://tornadoughalli.com/wp-content/uploads/2022/05/CLUB-SANDWICH-RECIPE-3-2.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Club Sandwich">
+      <h3 class="text-xl font-bold font-[Chela] mt-3">Club Sandwich</h3>
+      <p class="text-gray-600 mt-2 text-sm">Triple layer sandwich</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Club Sandwich', 550)"
+        class="mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2 rounded-full">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="hidden lg:block bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNk1TF6aLFM2p-WOQK4BI_fiQidEdR5YrrA&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Pasta">
+      <h3 class="text-xl font-bold font-[Chela] mt-3">Pasta</h3>
+      <p class="text-gray-600 mt-2 text-sm">Creamy white sauce pasta</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCart(this,'Pasta', 700)"
+        class="mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2 rounded-full">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="hidden lg:block bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQBjEtjwFi8HHXowSnOibtSfLDmGlh8DaHw&s" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Shawarma">
+      <h3 class="text-xl font-bold font-[Chela] mt-3">Shawarma</h3>
+      <p class="text-gray-600 mt-2 text-sm">Middle Eastern wrap</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Shawarma', 480)"
+        class="mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2 rounded-full">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="hidden lg:block bg-white rounded-xl shadow-lg p-3 sm:p-5 text-center">
+      <img src="https://www.yummytummyaarthi.com/wp-content/uploads/2016/03/1-14.jpg" class="w-full h-36 sm:h-40 object-cover object-center rounded-lg" alt="Grilled Fish">
+      <h3 class="text-xl font-bold font-[Chela] mt-3">Grilled Fish</h3>
+      <p class="text-gray-600 mt-2 text-sm">Spicy grilled fish</p>
+      <div class="flex items-center justify-center gap-3 mt-2">
+  <button onclick="changeQtyUI(this, -1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">−</button>
+
+  <span class="qty font-semibold">1</span>
+
+  <button onclick="changeQtyUI(this, 1)"
+    class="bg-gray-300 px-3 rounded text-lg cursor-pointer">+</button>
+</div>
+
+      <button onclick="addToCartWithQty(this,'Grilled Fish', 950)"
+        class="mt-4 bg-red-600 hover:bg-red-700 cursor-pointer text-white px-5 py-2 rounded-full">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<a href="cart.html"
+   class="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 cursor-pointer text-white p-4 rounded-full shadow-lg flex items-center justify-center z-50">
+  <i class="fas fa-shopping-cart text-lg sm:text-2xl"></i>
+</a>
+
+<script>
+function addToCart(name, price) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existing = cart.find(item => item.name === name);
+  if(existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name, price, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Fancy toast
+  const toast = document.createElement("div");
+  toast.innerHTML = `<strong>${name}</strong> added to cart!`;
+  toast.className = `
+    fixed bottom-20 right-6 bg-green-500 text-white px-5 py-3 rounded-xl shadow-lg
+    opacity-0 transform translate-x-20 transition-all duration-500 z-50
+  `;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.remove("opacity-0", "translate-x-20");
+    toast.classList.add("opacity-100", "translate-x-0");
+  }, 50);
+
+  setTimeout(() => {
+    toast.classList.add("opacity-0", "translate-x-20");
+    toast.classList.remove("opacity-100", "translate-x-0");
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
+}
+</script>
+
+<script>
+function changeQtyUI(btn, change) {
+  const qtySpan = btn.parentElement.querySelector(".qty");
+  let qty = parseInt(qtySpan.innerText);
+  qty = Math.max(1, qty + change);
+  qtySpan.innerText = qty;
+}
+
+function addToCartWithQty(btn, name, price) {
+  let qty = 1;
+
+  // Try to find quantity selector safely
+  const card = btn.closest(".bg-white");
+  const qtySpan = card ? card.querySelector(".qty") : null;
+
+  if (qtySpan) {
+    qty = parseInt(qtySpan.innerText) || 1;
+    qtySpan.innerText = 1; // reset after add
+  }
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(item => item.name === name);
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name, price, qty });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // ✅ Toast (guaranteed to show)
+  const toast = document.createElement("div");
+  toast.innerHTML = `<strong>${qty} × ${name}</strong> added to cart!`;
+  toast.className = `
+    fixed bottom-20 right-6 bg-green-500 text-white px-5 py-3 rounded-xl shadow-lg
+    opacity-0 translate-x-10 transition-all duration-300 z-50
+  `;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.remove("opacity-0", "translate-x-10");
+  });
+
+  setTimeout(() => {
+    toast.classList.add("opacity-0", "translate-x-10");
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
+}
+</script>
+
+
+
+</body>
+</html>

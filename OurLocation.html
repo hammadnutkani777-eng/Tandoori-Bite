@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Tailwind (kept SAME) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Salsa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chela+One&family=Salsa&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ZA:wght@100..400&display=swap" rel="stylesheet">
+
+</head>
+
+<body style="background: url('backbg.png') no-repeat center center fixed; background-size: cover;">
+
+<nav class="w-full shadow-lg bg-[url('bg.png')] bg-cover bg-center">
+  <div class="max-w-7xl mx-auto h-16 flex items-center px-4 relative">
+
+    <!-- Left: Logo -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <img
+        src="logo.png"
+        alt="Tandoori Bites"
+        class="h-16 w-16 md:h-20 md:w-20 rounded-full object-cover"
+      >
+      <span class="hidden lg:block text-[#001219] bg-red-300 font-[Pacifico] tracking-wide text-3xl">
+        Tandoori Bites
+      </span>
+    </div>
+
+    <!-- Center Search Bar -->
+    <div class="flex-1 flex justify-center mx-4">
+      <input
+        type="search"
+        placeholder="Search food...."
+        class="w-full max-w-[300px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[600px]
+               px-4 py-2 rounded-full
+               bg-white text-gray-800
+               border-3 border-black
+               focus:outline-none focus:ring-2 focus:ring-black"
+      >
+    </div>
+
+    <!-- Right Menu -->
+    <ul class="hidden sm:flex ml-auto gap-6 text-[#7209b7] bg-white font-[Salsa] font-semibold text-base lg:text-lg">
+      <li class="hover:text-yellow-500 transition"><a href="index.html">Home<i class="fa-solid fa-house" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="Menu.html">Menu<i class="fa-solid fa-clipboard-list" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="cart.html">Cart<i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></a></li>
+      <li class="hover:text-yellow-500 transition"><a href="OurLocation.html">Our Location<i class="fa-solid fa-map-location-dot" style="color: #000000;"></i></a></li>
+    </ul>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <ul class="sm:hidden flex justify-around bg-[#faedcd] text-black font-[Salsa] font-semibold text-sm py-3">
+    <li class="hover:bg-blue-300 transition"><a href="index.html">Home<i class="fa-solid fa-house" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="Menu.html">Menu<i class="fa-solid fa-clipboard-list" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="cart.html">Cart<i class="fa-solid fa-cart-shopping" style="color: #1d49e7;"></i></a></li>
+    <li class="hover:bg-blue-300 transition"><a href="OurLocation.html">Location<i class="fa-solid fa-map-location-dot" style="color: #1d49e7;"></i></a></li>
+  </ul>
+</nav>
+</body>
+</html>
